@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmls:th="thhp://www.thymeleaf.org" lang="en" xmlns:xmls="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>注册用户</title>
+    <!--
+    4.编写注册界面
+    5.调试注册界面，启动Application,访问localhost:8094/edituser
+    4.1修改路径
+    调试：加前缀th:去执行相关的操作，然后不执行，刷新界面-->
+    <link rel="stylesheet" href="@{/css/bootstrap.min.css">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/vue/2.6.11/vue.js}"></script>
+    <script th:src="@{/js/vue.min.js}"></script>
+
+
+</head>
+<body background="/static/background.jpg">
+<div id="app">
+    <div v-bind:style="styleObject">校园二手交易市场</div>
+</div>
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <h5>注册用户</h5>
+        </div>
+        <!--表单,行的形式，后台POST形式
+        th:field="*{account}"是th:object="${user}"里的属性
+        <label for="account">账号</label> 不行,1有效
+        F12键
+        -->
+        <form class="form-row" th:action="@{/saveuser}" th:object="${user}" method="POST">
+            <div class="form-group"><!--表单组-->
+                <label for>账号</label>
+                <input class="form-control" th:field="*{account}" required placeholder="请输入账号">
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                <input type="password" class="form-control" th:field="*{password}" required placeholder="请输入密码">
+            </div>
+            <div class="form-group">
+               <button type="submit" class="btn btn-primary">注册</button>
+            </div>
+        </form>
+
+        <form class="form-row" th:action="@{/cancelregister}" method="POST">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">取消注册，点击返回登录页面</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            styleObject:{
+                color:'orange',
+                fontSize:"25px"
+            }
+        }
+    });
+</script>
+</body>
+</html>

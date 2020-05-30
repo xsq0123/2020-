@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmls:th="thhp://www.thymeleaf.org" lang="en" xmlns:xmls="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>校园二手交易市场</title>
+    <link rel="stylesheet" href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/vue.min.js}"></script>
+
+</head>
+<body>
+<div id="app">
+    <div v-bind:style="styleObject">校园二手交易市场</div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <h5>登录成功</h5>
+        <form class="form-row" th:action="@{/tologin}" method="POST">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">退出</button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <h3>商品列表</h3>
+    </div>
+    <div class="row">
+        <form class="form-row" th:action="@{/tooders}" method="POST">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">查看订单</button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <form class="form-row" th:action="@{/listusers}" id="form1" method="post">
+            <div class="form-group">
+                <label>关键字</label>
+                <input type="text" placeholder="输入商品名称关键字进行搜索" name="kw">
+                <input type="submit" class="btn btn-primary" value="搜索">
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" name="uids" value="" id="deleteuids">
+                <button type="button" class="btn badge-danger buybtns">批量购买</button>
+            </div>
+        </form>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>序号</th>
+                    <th>商品编码</th>
+                    <th>商品名称</th>
+                    <th>商品价格</th>
+                    <th>商品描述</th>
+                    <th>商品备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="u : ${pages.content}">
+                        <td>
+                            <input type="checkbox" th:value="${u.pid}" class="cuid">
+                        </td>
+
+                        <td th:text="${uStat.count}"></td>
+                        <td th:text="${u.pcode}"></td>
+                        <td th:text="${u.pname}"></td>
+                        <td th:text="${u.pprice}"></td>
+                        <td th:text="${u.pscript}"></td>
+                        <td th:text="${u.pothers}"></td>
+                        <td><a th:href="@{|/buy/${u.pid}|}" class="buybtn">购买</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var vm=new Vue({
+        el:"#vueroot",
+        data:{msg:"购买"}
+    });
+</script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            styleObject:{
+                color:'orange',
+                fontSize:"25px"
+            }
+        }
+    });
+</script>
+<script th:src="@{/js/site.js}"></script>
+</body>
+</html>

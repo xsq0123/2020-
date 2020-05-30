@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <title>index</title>
+    <!--
+    2.前端环境搭建
+    2.1导入js、css包 2.2编写index.html-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--2.2注意先将jquery-3.3.1.min.js拖进，j在b前，j依赖b-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/vue.min.js"></script>
+
+</head>
+<body>
+<div id="vueroot">测试
+    <a href="#" class="btn btn-primary">{{msg}}</a>
+</div>
+
+<form class="form-row" th:action="@{/toplist}" method="POST">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">浏览商品列表</button>
+    </div>
+</form>
+
+<form class="form-row" th:action="@{/buys}" method="POST">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">已买商品</button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var vm=new Vue({
+        el:"#vueroot",
+            data:{msg:"点击我"}
+    });
+</script>
+
+</body>
+</html>

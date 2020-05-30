@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <link rel="stylesheet" href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/vue.min.js}"></script>
+</head>
+<body>
+<div id="app">
+    <div v-bind:style="styleObject">校园二手交易市场</div>
+</div>
+<div class="container-fluid">
+    <table>
+        <thead>
+        <tr>
+            <th>商品编码</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>商品描述</th>
+            <th>商品备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project:${projects}">
+            <td th:text="${project.getPcode()}"></td>
+            <td th:text="${project.getPname()}"></td>
+            <td th:text="${project.getPprice()}"></td>
+            <td th:text="${project.getPscript()}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/buyproject/}+${project.getPid()}">加入购物车</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            styleObject:{
+                color:'orange',
+                fontSize:"25px"
+            }
+        }
+    });
+</script>
+</body>
+</html>

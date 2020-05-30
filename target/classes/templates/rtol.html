@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmls:th="thhp://www.thymeleaf.org" lang="en" xmlns:xmls="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>登录用户</title>
+    <link rel="stylesheet" href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/vue.min.js}"></script>
+
+</head>
+<body>
+<div id="app">
+    <div v-bind:style="styleObject">校园二手交易市场</div>
+</div>
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <h5>登录用户</h5>
+        </div>
+        <form class="form-row" th:action="@{/islogin}"  method="POST">
+
+            <div class="row form-group"><!--表单组-->
+                <label for>账号</label>
+                <input class="form-control" name="account"  required placeholder="请输入账号">
+            </div>
+            <div class="row form-group">
+                <label>密码</label>
+                <input type="password" name="password"  class="form-control"  required laceholder="请输入密码">
+            </div>
+            <div class="row form-group">
+                <button type="submit" class="btn btn-primary">逛逛商品登录</button>
+            </div>
+        </form>
+        <form class="form-row" th:action="@{/gotoregister}" method="POST">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">点击注册</button>
+            </div>
+        </form>
+        <form class="form-row" th:action="@{/ismyplogin}" method="POST">
+            <div class="row form-group"><!--表单组-->
+                <label for>账号</label>
+                <input class="form-control" name="account"  required placeholder="请输入账号">
+            </div>
+            <div class="row form-group">
+                <label>密码</label>
+                <input type="password" name="password"  class="form-control"  required laceholder="请输入密码">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">店铺登录</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            styleObject:{
+                color:'orange',
+                fontSize:"25px"
+            }
+        }
+    });
+</script>
+</body>

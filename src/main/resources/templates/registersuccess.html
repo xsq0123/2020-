@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmls:th="thhp://www.thymeleaf.org" lang="en" xmlns:xmls="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>注册成功</title>
+    <link rel="stylesheet" href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/vue.min.js}"></script>
+
+</head>
+<body>
+<div id="app">
+    <div v-bind:style="styleObject">校园二手交易市场</div>
+</div>
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <h5>注册用户成功！</h5>
+        </div>
+        <form class="form-row" th:action="@{/tologin}" method="POST">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">点击返回登录页面</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            styleObject:{
+                color:'orange',
+                fontSize:"25px"
+            }
+        }
+    });
+</script>
+</body>
+</html>
